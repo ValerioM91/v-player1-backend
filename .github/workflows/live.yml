@@ -1,0 +1,21 @@
+name: Deploy to [LIVE_DOMAIN]
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - name: Deploy Over SFTP
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.LIVE_REMOTE_HOST }}
+          ftp-username: ${{ secrets.LIVE_REMOTE_USER }}
+          ftp-password: ${{ secrets.LIVE_REMOTE_PASS }}
+          local_source_dir: "./"
+          git-ftp-args: --insecure
