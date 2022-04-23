@@ -43,7 +43,7 @@ class ThemeFunctions {
      */
     public function theme_support() {
         // Add post thumbnail support to post types as required
-        add_theme_support( 'post-thumbnails', array( 'post' ) );
+        add_theme_support( 'post-thumbnails', array( 'post', 'reviews' ) );
         // HTML5 Support
         add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
         // WordPress 4.4 Title Support
