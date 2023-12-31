@@ -15,6 +15,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: ${{ secrets.LIVE_REMOTE_HOST }}
-          ftp-username: ${{ secrets.LIVE_REMOTE_USER }}
           ftp-password: ${{ secrets.LIVE_REMOTE_PASS }}
+          ftp-username: ${{ secrets.LIVE_REMOTE_USER }}
           git-ftp-args: --insecure
