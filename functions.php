@@ -99,7 +99,7 @@ add_filter('upload_mimes', 'add_file_types_to_uploads');
  */
 function revalidate_path($path) {
     $secret = REVALIDATE_SECRET;
-	$response = wp_remote_post( 'https://v-player1-frontend.vercel.app/api/revalidate?secret=' + $secret, array(
+	$response = wp_remote_post( 'https://v-player1-frontend.vercel.app/api/revalidate?secret=' . $secret, array(
 		'method' => 'POST',
 		'timeout' => 45,
 		'headers' => array(),
