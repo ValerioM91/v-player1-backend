@@ -92,3 +92,27 @@ function add_file_types_to_uploads($file_types){
     return $file_types;
 }
 add_filter('upload_mimes', 'add_file_types_to_uploads');
+
+
+/**
+ * Next.JS on-Demand revalidation
+ */
+function revalidate_path($path) {
+    $secret = REVALIDATE_SECRET;
+	$response = wp_remote_post( 'https://v-player1-frontend.vercel.app/api/revalidate?secret=' + $secret, array(
+		'method' => 'POST',
+		'timeout' => 45,
+		'headers' => array(),
+		'body' => array( 'path' => $path ),
+		'cookies' => array()
+		)
+	);
+	return $response;
+}
+
+add_action( 'save_post', 'revalidate_frontend_page', 10, 3 );
+
+function revalidate_frontend_page( $post_ID, $post, $update ) {
+	$path =	str_replace('https://v-player1.co.uk', '', get_permalink($post_ID));
+	revalidate_path($path);
+}
