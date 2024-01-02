@@ -8,13 +8,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2.1.0
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
       - name: Deploy Over SFTP
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          ftp-server: ${{ secrets.LIVE_REMOTE_HOST }}
-          ftp-password: ${{ secrets.LIVE_REMOTE_PASS }}
-          ftp-username: ${{ secrets.LIVE_REMOTE_USER }}
-          git-ftp-args: --insecure
+          server: v-player1.co.uk
+          password: ${{ secrets.LIVE_REMOTE_PASS }}
+          username: ${{ secrets.LIVE_REMOTE_USER }}
+          server-dir: /domains/v-player1.co.uk/public_html/wp-content/themes/v-player1/
